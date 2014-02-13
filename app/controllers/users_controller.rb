@@ -6,9 +6,7 @@ class UsersController < ApplicationController
 
   def login
   	@user = User.login(params[:user], params[:password])
-  	if @user.instance_of?(User)
-  		@user.count += 1
-  		@user.save()
+  	if @user > 0
   		render json: {:errCode => 1}
   	else render json: {:errCode => @user}
 
@@ -17,8 +15,9 @@ class UsersController < ApplicationController
 
   def add
   	@user = User.signup(params[:user], params[:password])
-  	if @user.instance_of?(User)
-  		render json: {:count => @user.count, :errCode => 1}
+  	if @user > 0
+  		@res = User.where(:user => params[:user]).first
+  		render json: {:count => @res.count, :errCode => 1}
   		return
   	else 
   		render json: {:errCode => @user}

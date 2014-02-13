@@ -16,13 +16,15 @@ class User < ActiveRecord::Base
 		else 
 		 	if(user.password == password)
 		 		bool = true;
+		 		user.count += 1
+		 		user.save()
 			else
 				puts user.inspect
 			 	bool = false;
 			end	
 		end
 		if bool
-			return user
+			return SUCCESS
 		else return -1
 		end
 		# return user if user else nil
@@ -41,7 +43,7 @@ class User < ActiveRecord::Base
 			user = User.new(user: name, password: password)
 			user.count = 1
 			user.save()
-			return user
+			return SUCCESS
 		else user = -2
 			return user
 		end

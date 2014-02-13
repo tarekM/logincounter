@@ -1,0 +1,32 @@
+<!-- <h1>Users#index</h1>
+<p>Find me in app/views/users/index.html.erb</p> -->
+<!-- Use this to debug -->
+ 
+<!-- <%= p params %> -->
+<% if @user.instance_of?(User) %>
+	<h1>Welcome <%= @user.user %>, this is your <%= @user.count %> visit</h1>
+	<%= form_tag("/", method: "get") do %>
+		<%= submit_tag("Logout", :onclick => "this.form.action = '/users'") %> 
+	<% end %>
+<% else %>
+	<% if @user == -2 %> 
+		<h1>ERROR! USERNAME EXISTS ALREADY.TRY AGAIN </h1>
+	<%end%>
+	<% if @user == -3 %> 
+		<h1>ERROR BAD USERNAME. TRY AGAIN </h1>
+	<%end%>
+	<% if @user == -4 %> 
+		<h1>ERROR BAD PASSWORD. TRY AGAIN </h1>
+	<%end%>
+
+	<%= form_tag("/", method: "post") do %>
+		<%= label_tag(:user, "Username:") %>
+		<%= text_field_tag(:user) %>
+		<%= label_tag(:password, "Password:") %>
+		<%= text_field_tag(:password) %>
+		<%= submit_tag("Add User", :onclick => "this.form.action = '"+url_for(controller: 'users',
+	        action: 'add')+"'") %>
+		<%= submit_tag("Login", :onclick => "this.form.action = '"+url_for(controller: 'users',
+	        action: 'login')+"'") %>
+	<%end%>
+<% end %>

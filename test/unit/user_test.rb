@@ -12,13 +12,15 @@ class UserTest < ActiveSupport::TestCase
 	MAX_USERNAME_LENGTH = 128
 	MAX_PASSWORD_LENGTH = 128
 
+	rake db:test:prepare
+
 	test "reset" do
 		out = User.TESTAPI_resetFixture 
 		assert out == SUCCESS
 	end
 
 	test "signup succeeds" do
-		val = User.signup("test1", "test")
+		val = User.add("test1", "test")
 		assert val == SUCCESS
 	end
 

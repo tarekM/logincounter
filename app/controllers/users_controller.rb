@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   def login
   	@user = User.login(params[:user], params[:password])
   	if @user > 0
-  		render json: {:errCode => 1}
-  	else render json: {:errCode => @user}
+  		@res = User.where(:user => params[:user]).first
+  		render json: {:count => @res.count,:errCode => 1}
+  	else render json: { :errCode => @user}
 
   	end
   end

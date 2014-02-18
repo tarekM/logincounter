@@ -4,13 +4,15 @@
  
 <!-- <%= p params %> -->
 <% if @user.instance_of?(User) %>
-	<h1> Welcome <%= @user.user %>, this is your <%= @user.count %> visit</h1>
+	<h3>Welcome back <%= @user.user %> <h3>
+	<h4>You have visited <%= @user.count %> times!</h4>
 	<%= form_tag("/", method: "get") do %>
 		<%= submit_tag("Logout", :onclick => "this.form.action = '/users'") %> 
 	<% end %>
 <% else %>
-	<% if @user == -1 %> 
-		<h1> Invalid Username/Password Combination. Try Again </h1>
+	<% if @user == -1 %>
+		<h1>Welcome! </h1> 
+		<h4> ERROR: Invalid Username and Password Combination. Please try again.</h4>
 	<%end%>
 
 
@@ -18,7 +20,7 @@
 		<%= label_tag(:user, "Username:") %>
 		<%= text_field_tag(:user) %>
 		<%= label_tag(:password, "Password:") %>
-		<%= text_field_tag(:password) %>
+		<%= password_field_tag(:password) %>
 		<%= submit_tag("Add User", :onclick => "this.form.action = '"+url_for(controller: 'users',
 	        action: 'add')+"'") %>
 		<%= submit_tag("Login", :onclick => "this.form.action = '"+url_for(controller: 'users',

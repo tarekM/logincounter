@@ -4,13 +4,13 @@
  
 <!-- <%= p params %> -->
 
-<h1>Welcome! Please enter your credentials below</h1>
+<h1>Welcome! </h1>
 
 <%= form_tag("/", method: "post") do %>
 	<%= label_tag(:user, "Username:") %>
 	<%= text_field_tag(:user) %>
 	<%= label_tag(:password, "Password:") %>
-	<%= text_field_tag(:password) %>
+	<%= password_field_tag(:password) %>
 	<%= submit_tag("Add User", :onclick => "this.form.action = '"+url_for(controller: 'users',
         action: 'add')+"'") %>
 	<%= submit_tag("Login", :onclick => "this.form.action = '"+url_for(controller: 'users',

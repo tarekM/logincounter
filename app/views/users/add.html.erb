@@ -4,26 +4,28 @@
  
 <!-- <%= p params %> -->
 <% if @user.instance_of?(User) %>
-	<h1>Welcome <%= @user.user %>, this is your <%= @user.count %> visit</h1>
+	<h3>Welcome <%= @user.user %> <h3>
+	<h4>This is your <%= @user.count %>st visit</h4>
 	<%= form_tag("/", method: "get") do %>
 		<%= submit_tag("Logout", :onclick => "this.form.action = '/users'") %> 
 	<% end %>
 <% else %>
+	<h1>Welcome! </h1>
 	<% if @user == -2 %> 
-		<h1>ERROR! USERNAME EXISTS ALREADY.TRY AGAIN </h1>
+		<h4>ERROR: This user name already exists. Please try again. </h4>
 	<%end%>
 	<% if @user == -3 %> 
-		<h1>ERROR BAD USERNAME. TRY AGAIN </h1>
+		<h4>ERROR: The user name should be non-empty and at most 128 characters long. Please try again. </h4>
 	<%end%>
 	<% if @user == -4 %> 
-		<h1>ERROR BAD PASSWORD. TRY AGAIN </h1>
+		<h4>ERROR: The password should be at most 128 characters long. Please try again. </h4>
 	<%end%>
 
 	<%= form_tag("/", method: "post") do %>
 		<%= label_tag(:user, "Username:") %>
 		<%= text_field_tag(:user) %>
 		<%= label_tag(:password, "Password:") %>
-		<%= text_field_tag(:password) %>
+		<%= password_field_tag(:password) %>
 		<%= submit_tag("Add User", :onclick => "this.form.action = '"+url_for(controller: 'users',
 	        action: 'add')+"'") %>
 		<%= submit_tag("Login", :onclick => "this.form.action = '"+url_for(controller: 'users',

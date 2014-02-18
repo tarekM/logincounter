@@ -12,13 +12,13 @@
 <% else %>
 	<h1>Welcome! </h1>
 	<% if @user == -2 %> 
-		<h4>ERROR: This user name already exists. Please try again. </h4>
+		<h4>ERROR -2: This user name already exists. Please try again.</h4>
 	<%end%>
 	<% if @user == -3 %> 
-		<h4>ERROR: The user name should be non-empty and at most 128 characters long. Please try again. </h4>
+		<h4>ERROR -3: The user name should be non-empty and at most 128 characters long. Please try again. </h4>
 	<%end%>
 	<% if @user == -4 %> 
-		<h4>ERROR: The password should be at most 128 characters long. Please try again. </h4>
+		<h4>ERROR -4: The password should be at most 128 characters long. Please try again. </h4>
 	<%end%>
 
 	<%= form_tag("/", method: "post") do %>

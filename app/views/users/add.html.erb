@@ -2,7 +2,8 @@
 <p>Find me in app/views/users/index.html.erb</p> -->
 <!-- Use this to debug -->
  
-<!-- <%= p params %> -->
+<!-- <%= p params %> 
+This is the view that corresponds to the add URL. It first determines whether or not an error has occured, and then either outputs another form to try again, or a successful login with a logout button to go back with count 1-->
 <% if @user.instance_of?(User) %>
 	<h3>Welcome <%= @user.user %> <h3>
 	<h4>This is your <%= @user.count %>st visit</h4>
@@ -10,15 +11,15 @@
 		<%= submit_tag("Logout", :onclick => "this.form.action = '/users'") %> 
 	<% end %>
 <% else %>
-	<h1>Welcome! </h1>
+	<h1><font color="green"> Welcome! </h1></font>
 	<% if @user == -2 %> 
-		<h4>ERROR -2: This user name already exists. Please try again.</h4>
+		<h4><font color="navy">ERROR -2: This user name already exists. Please try again.</h4></font>
 	<%end%>
 	<% if @user == -3 %> 
-		<h4>ERROR -3: The user name should be non-empty and at most 128 characters long. Please try again. </h4>
+		<h4><font color="navy">ERROR -3: The user name should be non-empty and at most 128 characters long. Please try again. </h4></font>
 	<%end%>
 	<% if @user == -4 %> 
-		<h4>ERROR -4: The password should be at most 128 characters long. Please try again. </h4>
+		<h4><font color="navy">ERROR -4: The password should be at most 128 characters long. Please try again. </h4></font>
 	<%end%>
 
 	<%= form_tag("/", method: "post") do %>
@@ -26,8 +27,11 @@
 		<%= text_field_tag(:user) %>
 		<%= label_tag(:password, "Password:") %>
 		<%= password_field_tag(:password) %>
+		<br>
+		<br>
 		<%= submit_tag("Add User", :onclick => "this.form.action = '"+url_for(controller: 'users',
 	        action: 'add')+"'") %>
+	    <br>
 		<%= submit_tag("Login", :onclick => "this.form.action = '"+url_for(controller: 'users',
 	        action: 'login')+"'") %>
 	<%end%>

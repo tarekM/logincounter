@@ -2,17 +2,20 @@
 <p>Find me in app/views/users/index.html.erb</p> -->
 <!-- Use this to debug -->
  
-<!-- <%= p params %> -->
+<!-- <%= p params %> 
+This is the view that corresponds to the login URL. It determins whether or not the login function returns successfully, and if it does, it displays the count. Else, it renders another form for the user to try again.-->
 <% if @user.instance_of?(User) %>
-	<h3>Welcome back <%= @user.user %> <h3>
-	<h4>You have visited <%= @user.count %> times!</h4>
+	<h3>Welcome back <%= @user.user %>! <h3>
+	<h4>You have visited</h4> 
+	<font size = 100 color = "gray"> <%= @user.count %></font> 
+	<h4> times!</h4>
 	<%= form_tag("/", method: "get") do %>
 		<%= submit_tag("Logout", :onclick => "this.form.action = '/users'") %> 
 	<% end %>
 <% else %>
 	<% if @user == -1 %>
-		<h1>Welcome! </h1> 
-		<h4> ERROR -1: Invalid Username and Password Combination. Please try again.</h4>
+		<h1><font color="green"> Welcome! </h1></font>
+		<h4><font color="navy"> ERROR -1: Invalid Username and Password Combination. Please try again.</h4></font>
 	<%end%>
 
 
@@ -21,8 +24,11 @@
 		<%= text_field_tag(:user) %>
 		<%= label_tag(:password, "Password:") %>
 		<%= password_field_tag(:password) %>
+		<br>
+		<br>
 		<%= submit_tag("Add User", :onclick => "this.form.action = '"+url_for(controller: 'users',
 	        action: 'add')+"'") %>
+	    <br>
 		<%= submit_tag("Login", :onclick => "this.form.action = '"+url_for(controller: 'users',
 	        action: 'login')+"'") %>
 

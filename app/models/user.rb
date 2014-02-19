@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
 	MAX_USERNAME_LENGTH = 128
 	MAX_PASSWORD_LENGTH = 128
 
+	#login function looks for existing user with same name and compares passwords
+	# if successful, return 1, else return -1.
+	#@params name, password
+	#output = -1 (error) or USER
+
 	def self.login(name, password)
 		user = User.find_by_user(name)
 		bool = true;
@@ -19,7 +24,6 @@ class User < ActiveRecord::Base
 		 		user.count += 1
 		 		user.save()
 			else
-				puts user.inspect
 			 	bool = false;
 			end	
 		end
@@ -29,6 +33,12 @@ class User < ActiveRecord::Base
 		end
 		# return user if user else nil
 	end
+
+	#this is the function that adds a user to the existing users. It does this by first making
+	#sure that there is no other user with the same name. It also checks certain constraints
+	# to make sure input is valid.
+	#@params: name, password
+	#output: [-2,-4] || 1
 
 	def self.signup(name, password)
 		if (name.length > MAX_USERNAME_LENGTH || name.length < 1)

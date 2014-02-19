@@ -7,6 +7,8 @@ Logincount::Application.routes.draw do
   match "TESTAPI/unitTests" => 'users#unitTests', :via => :post
   match "TESTAPI/resetFixture" => 'users#resetFixture', :via => :post
 
+  root :to => 'users#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

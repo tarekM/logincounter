@@ -2,17 +2,21 @@
 <p>Find me in app/views/users/index.html.erb</p> -->
 <!-- Use this to debug -->
  
-<!-- <%= p params %> -->
+<!-- <%= p params %>
+this is the main view. it just displays a form for the user to input their credentials and has two buttons, each linked to an action, one to add and another to login. -->
 
-<h1>Welcome! </h1>
+<h1><font color="green"> Welcome! </h1></font>
 
 <%= form_tag("/", method: "post") do %>
 	<%= label_tag(:user, "Username:") %>
 	<%= text_field_tag(:user) %>
 	<%= label_tag(:password, "Password:") %>
 	<%= password_field_tag(:password) %>
+	<br>
+	<br>
 	<%= submit_tag("Add User", :onclick => "this.form.action = '"+url_for(controller: 'users',
         action: 'add')+"'") %>
+    <br>
 	<%= submit_tag("Login", :onclick => "this.form.action = '"+url_for(controller: 'users',
         action: 'login')+"'") %>
 
